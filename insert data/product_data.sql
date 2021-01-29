@@ -98,3 +98,7 @@ insert into product (product_id, name, color, status_id, product_type_id, listed
 insert into product (product_id, name, color, status_id, product_type_id, listed_price, category_id, size, sku, condition_id, sale_date, weight, notes) values (186246, 'Table Cloth 91x91 Colour', 'Green', 0, 1, '553.08', 2, 9, '76485-1003', 1, '2020-07-15', 0, null);
 insert into product (product_id, name, color, status_id, product_type_id, listed_price, category_id, size, sku, condition_id, sale_date, weight, notes) values (167941, 'Lamb - Whole, Fresh', 'Khaki', 0, 1, '475.42', 2, 11, '68007-204', 1, '2020-07-27', 0, null);
 insert into product (product_id, name, color, status_id, product_type_id, listed_price, category_id, size, sku, condition_id, sale_date, weight, notes) values (152666, 'Icecream - Dstk Cml And Fdg', 'Blue', 3, 0, '275.41', 2, 6, '16590-948', 4, '2020-06-08', 0, null);
+
+UPDATE product
+SET sale_date = NULL, size = NULL, sku = NULL, status_id = NULL
+WHERE category_id = 1 OR category_id = 2;
