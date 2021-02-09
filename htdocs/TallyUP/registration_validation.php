@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+header('location:registration_newuser.php');
 
 $con = mysqli_connect('localhost','jeramiec','jeramie98');
 

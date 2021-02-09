@@ -11,7 +11,7 @@
 		<form action="registration_validation.php" method="post">
 			<div>
 				<label>Email</label>
-				<input type="text" name="email" required>
+				<input type="email" name="email" required>
 			</div>
 			<div>
 				<label>Username</label>
@@ -21,10 +21,10 @@
 				<label>Password</label>
 				<input type="password" name="password" required>
 			</div>
-			<button type="submit"> Login </button>
-			
+			<button type="submit"> Create account </button>
 		</form>
 		
+		Already have an account? <a href="login.php">Login here</a>
 	</div>
 </body>
 </html>
