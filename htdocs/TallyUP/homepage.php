@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -18,33 +21,33 @@
 							<h2>TallyUP</h2>
 						</div>
 						<ul>
-							<li><a class="current" href="#"><img class="btn home" src="icons/dashboard.svg" alt="home_btn"/>homepage</a></li>
+							<li><a class="current" href="homepage.php"><img class="btn home" src="icons/dashboard.svg" alt="home_btn"/>homepage</a></li>
 							
-							<li><a href="#.php"><img class="btn notification" src="icons/notifications.svg" alt="notif_btn"/>
+							<li><a href="notifications.php"><img class="btn notification" src="icons/notifications.svg" alt="notif_btn"/>
 								notifications</a>
 							</li>
 							
-							<li><a href="#"><img class="btn inventory" src="icons/inventory.svg" alt="inv_btn"/>
+							<li><a href="inventory.php"><img class="btn inventory" src="icons/inventory.svg" alt="inv_btn"/>
 								inventory</a>
 							</li>
 							
-							<li><a href="#"><img class="btn sales" src="icons/sales.svg" alt="sale_btn"/>
+							<li><a href="sales.php"><img class="btn sales" src="icons/sales.svg" alt="sale_btn"/>
 								sales</a>
 							</li>
 							
-							<li><a href="#"><img class="btn expenses" src="icons/expenses.svg" alt="exp_btn"/>
+							<li><a href="expenses.php"><img class="btn expenses" src="icons/expenses.svg" alt="exp_btn"/>
 								expenses</a>
 							</li>
 							
-							<li><a href="#"><img class="btn invoices" src="icons/invoices.svg" alt="invoi_btn"/>
+							<li><a href="invoices.php"><img class="btn invoices" src="icons/invoices.svg" alt="invoi_btn"/>
 								invoices</a>
 							</li>
 							
-							<li><a href="#"><img class="btn shopping" src="icons/cart.svg" alt="shop_btn"/>
+							<li><a href="shopping.php"><img class="btn shopping" src="icons/cart.svg" alt="shop_btn"/>
 								shopping</a>
 							</li>
 							
-							<li><a href="#"><img class="btn settings" src="icons/settings.svg" alt="set_btn"/>
+							<li><a href="settings.php"><img class="btn settings" src="icons/settings.svg" alt="set_btn"/>
 								settings</a>
 							</li>
 						</ul>
@@ -55,7 +58,7 @@
 					<div class="wrapper">
 						<header>
 							<div class="main_content">
-								<h1>Welcome back, (name)</h1>
+								<h1>Welcome back, <?php echo $_SESSION['username']; ?></h1>
 									<p>...Insert dashboard contents here...</p>
 								<a href="#">Contact me?????</a>
 							</div>

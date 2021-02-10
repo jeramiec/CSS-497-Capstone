@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>TallyUP</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body style="background-color:#bdc3c7">

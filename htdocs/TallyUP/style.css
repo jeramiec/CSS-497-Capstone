@@ -18,6 +18,14 @@ body{
 	position: relative;
 }
 
+.wrapper .loginform{
+	display: table;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	background: #FFFFFF;
+}
+
 .wrapper .sidebar{
 	position: fixed;
 	width: 350px;
@@ -33,14 +41,23 @@ body{
 	margin-bottom: 30px 0;
 }
 
-.wrapper .sidebar .current {
-	background-color: red;
+.wrapper .sidebar .current{
+	background-color: #679CF6;
+	padding: 25px;
+	width: 330px;
 }
 
 .wrapper .sidebar ul li{
 	padding: 15px;
 	border-bottom: 1px solid rgba(0,0,0,0.05);
 	border-top: 1px solid rgba(151,151,151,0.05);
+	transition: 350ms;
+}
+
+.wrapper .sidebar ul li:hover{
+	background: #679CF6;
+	transform: translateX(14px);
+	padding: 20px;
 }
 
 .wrapper .sidebar ul li a{
@@ -49,13 +66,10 @@ body{
 	align-items: center;
 }
 
-.wrapper .sidebar ul li a .btn{
+.wrapper .sidebar ul li a .btn{ /*formats button size*/
 	width: 40px;
 	padding: 8px;
-}
-
-.wrapper .sidebar ul li:hover{
-	background: #679CF6;
+	margin-right: 15px;
 }
 
 .wrapper .main_container{
