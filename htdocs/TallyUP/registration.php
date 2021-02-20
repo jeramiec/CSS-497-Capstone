@@ -1,13 +1,13 @@
 <html>
 <head>
 	<title>TallyUP</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="loginstyle.css">
 </head>
 
-<body style="background-color:#bdc3c7">
+<body>
 	<div id="main-wrapper">
 		<h2>Welcome to TallyUP</h2>
-		<center><h4>Sign up for an account<h1></center>
+		<h4>Sign up for an account<h1>
 		<form action="registration_validation.php" method="post">
 			<div>
 				<label>Email</label>

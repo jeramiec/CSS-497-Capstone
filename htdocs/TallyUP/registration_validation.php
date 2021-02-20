@@ -3,7 +3,7 @@
 session_start();
 /*header('location:registration_newuser.php');*/
 
-$con = mysqli_connect('localhost','jeramiec','jeramie98');
+$con = mysqli_connect('localhost','jeramiec','1234');
 
 
 mysqli_select_db($con,'tallyup');

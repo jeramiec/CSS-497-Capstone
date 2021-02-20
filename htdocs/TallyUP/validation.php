@@ -2,19 +2,25 @@
 
 session_start();
 
-$con = mysqli_connect('localhost','jeramiec','jeramie98');
+$con = mysqli_connect('localhost','jeramiec','1234'); //Check connection
 
 mysqli_select_db($con,'tallyup');
 
 $username = $_POST['username'];
 $pass = $_POST['password'];
 
-$select = "SELECT * FROM account WHERE username = '$username' && password = '$pass'";
-$result = mysqli_query($con, $select);
+$query = "SELECT * FROM account WHERE username = '$username' && password = '$pass'";
+$result = mysqli_query($con, $query);
 $num = mysqli_num_rows($result);
 
 if($num == 1) {
 	$_SESSION['username'] = $username;
+	
+	//$query = mysqli_query($con, "SELECT account_id FROM account WHERE username = '$username'");
+	//$result = mysqli_fetch_assoc($query);
+	$row = mysqli_fetch_assoc($result);
+	$_SESSION['id'] = $row['account_id'];
+	
 	header('location:homepage.php');
 }
 else {

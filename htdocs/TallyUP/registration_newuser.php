@@ -2,14 +2,14 @@
 <html>
 <head>
 	<title>Welcome to TallyUP</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="loginstyle.css">
 </head>
 
 <body style="background-color:#bdc3c7">
 	<div id="main-wrapper">
 		<h2>Welcome to TallyUP</h2>
 		<center><h4>Let's get started.<h1></center>
-		<form action="account_info.php" method="post">
+		<form action="account_info.php" method="POST">
 			<div>
 				<label>First name</label>
 				<input type="text" name="firstname" required>
@@ -63,7 +63,7 @@ include 'registration_validation.php';
 
 session_start();
 
-$con = mysqli_connect('localhost','jeramiec','jeramie98');
+$con = mysqli_connect('localhost','jeramiec','1234');
 
 mysqli_select_db($con,'tallyup');
 
