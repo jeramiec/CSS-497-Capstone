@@ -16,10 +16,9 @@ $num = mysqli_num_rows($result);
 if($num == 1) {
 	$_SESSION['username'] = $username;
 	
-	//$query = mysqli_query($con, "SELECT account_id FROM account WHERE username = '$username'");
-	//$result = mysqli_fetch_assoc($query);
 	$row = mysqli_fetch_assoc($result);
 	$_SESSION['id'] = $row['account_id'];
+	$_SESSION['first_name'] = $row['first_name'];
 	
 	header('location:homepage.php');
 }

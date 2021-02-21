@@ -1,5 +1,5 @@
 <?php
-session_start();
+	session_start();
 ?>
 
 <html lang="en">
@@ -16,12 +16,13 @@ session_start();
 	
 		<!-- NAV BAR -->
 		
-		<div class="nav-container">
+		<div>
 			<div class="wrapper">
 				<nav>
 					<div class="sidebar">
 						<div class="logo">
 							<h2>TallyUP</h2>
+							<h5>Welcome back, <?php echo $_SESSION['username']?> #<?php echo $_SESSION['id']?></h5>
 						</div>
 						<ul>
 							<li><a href="homepage.php"><img class="btn home" src="icons/dashboard.svg" alt="home_btn"/>homepage</a></li>
@@ -37,5 +38,152 @@ session_start();
 				</nav>
 			</div>
 		</div>
+		
+		<!-- END OF NAV BAR -->
+		
+		<main>
+			<div class="main-container">
+				<div class="main-title">
+					<h1>Expenses</h1>
+					<h4>Manage your company or personal expenses</h4>
+				</div>
+				
+				<div class="large-widgets">
+					<div class="widget company">
+						<div class="widget-inner">
+							<h3 class="widget-title">Company</h3>
+							<div>
+								<a href="#" id="ins-btn-company" class="ins-btn"><img src="icons/action/add_newitem.svg" alt="add_btn"/></a>
+							</div>
+						</div>
+						<div class="expenses">
+							<?php require 'php/get_company_expenses.php' ?>
+						</div>
+					</div>
+				</div>
+				
+				<div class="large-widgets">
+					<div class="widget personal">
+						<div class="widget-inner">
+							<h3 class="widget-title">Personal</h3>
+							<div>
+								<a href="#" id="ins-btn-personal" class="ins-btn"><img src="icons/action/add_newitem.svg" alt="add_btn"/></a>
+							</div>
+						</div>
+						<div class="inventory">
+							
+						</div>
+					</div>
+				</div>
+				
+				<div class="small-widgets">
+					<div class="widget insight">
+						<div class="widget-inner">
+							<select name="insight" id="insight">
+								<option value="overall">Overall</option>
+								<option value="company">Company</option>
+								<option value="personal">Personal</option>
+							</select>
+						</div>
+						
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			<div class="bg-modal">
+				<div class="modal-content">
+					<div class="modal-head">
+						<h3>Insert new item into inventory</h3>
+					</div>
+					<div class="close">
+						<a href="" id="close-btn" class="close-btn"><img src="icons/action/close.svg" alt="close_btn"/></a>
+					</div>
+					<div class="modal-form">
+						<form action="queries/insert.php" method="post">
+							<div class="row1">
+								<div>
+									<label>Item name</label>
+									<input type="text" name="name" required>
+								</div>
+								<div>
+									<label>SKU</label>
+									<input type="text" name="sku">
+								</div>
+								<div>
+									<label>Color</label>
+									<input type="text" name="color">
+								</div>
+							</div>
+							<div class="row2">
+								<div>
+									<label>Size</label>
+									<input type="text" name="size">
+								</div>
+								<div>
+									<label>Condition</label>
+									<select id="condition" name="condition">
+										<option value=0>Brand new</option>
+										<option value=1>Like new</option>
+										<option value=2>Used</option>
+										<option value=3>Very used</option>
+										<option value=4>Damaged; issues</option>
+									</select>
+								</div>
+								<div>
+									<label>Status</label>
+									<select id="status" name="status">
+										<option value=0>Unlisted</option>
+										<option value=1>Listed</option>
+										<option value=2>Pending</option>
+										<option value=3>Sold</option>
+									</select>
+								</div>
+							</div>
+							<div class="row3">
+								<div>
+									<label>Purchase date</label>
+									<input type="date" name="p_date">
+								</div>
+								<div>
+									<label>Listed price</label>
+									<input type="text" name="list_price">
+								</div>
+							</div>
+							<div class="row4">
+								<div>
+									<label>Sold price</label>
+									<input type="text" name="sold_price">
+								</div>
+								<div>
+									<label>Sold date</label>
+									<input type="date" name="s_date">
+								</div>
+							</div>
+							<div class="row5">
+								<div>
+									<label>Category</label>
+									<select id="category" name="category">
+										<option value=0>Merchendise</option>
+										<option value=1>Company item/tool</option>
+										<option value=2>Personal item/tool</option>
+									</select>
+								</div>
+								<div>
+									<label>Notes</label>
+									<textarea name="notes"></textarea>
+								</div>
+							</div>
+							
+							<button type="submit" name="submit">Save</button>
+							<button type="reset" name="reset">Clear</button>
+						</form>
+					</div> 
+				</div>
+			</div>
+			
+			<script src="js/main.js"></script>
 	</body>
 </html>

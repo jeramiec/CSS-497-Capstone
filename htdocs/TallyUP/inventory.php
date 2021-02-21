@@ -19,7 +19,6 @@
 		<div>
 			<div class="wrapper">
 				<nav>
-					<span class="open-slide">
 					<div class="sidebar">
 						<div class="logo">
 							<h2>TallyUP</h2>
@@ -36,7 +35,6 @@
 							<li><a href="settings.php"><img class="btn settings" src="icons/settings.svg" alt="set_btn"/>settings</a></li>
 						</ul>
 					</div>
-					</span>
 				</nav>
 			</div>
 		</div>
@@ -55,61 +53,11 @@
 						<div class="widget-inner">
 							<h3 class="widget-title">Company</h3>
 							<div>
-								<a href="#" id="ins-btn" class="ins-btn"><img src="icons/action/add.svg" alt="add_btn"/></a>
+								<a href="#" id="ins-btn-company" class="ins-btn"><img src="icons/action/add_newitem.svg" alt="add_btn"/></a>
 							</div>
 						</div>
-						<div class="datatable inventory">
-							<?php
-							
-							$con = mysqli_connect('localhost','jeramiec','1234');
-
-							if (mysqli_connect_errno()){
-								echo "Failed to connect to MySQL: " . mysqli_connect_error();
-							}
-							
-							mysqli_select_db($con,'tallyup');
-							$query = "SELECT p.*, i.inventory_id, i.account_id, i.description, i.listed_price, i.sold_price, i.sold_date, e.cost, e.purchase_date FROM product p INNER JOIN inventory i ON (p.product_id = i.product_id) LEFT JOIN expense e ON (e.product_id = i.product_id) WHERE category_id != 2 AND i.account_id = {$_SESSION['id']}"; // Query for returning user-unique inventory
-							$result = mysqli_query($con, $query);
-							
-							if($result == FALSE){
-								die(mysql_erorr());
-							}
-
-							echo "<table>
-							<tr>
-								<th>Status</th>
-								<th>Name</th>
-								<th>Size</th>
-								<th>SKU</th>
-								<th>Condition</th>
-								<th>Purchase date</th>
-								<th>Purchase total</th>
-								<th>Listed price</th>
-								<th>Sold price</th>
-								<th>Sold date</th>
-								<th>Notes</th>
-							</tr>";
-
-							while($row = mysqli_fetch_array($result)){
-								echo "<tr>";
-								echo "<td>" . $row['status_id'] . "</td>";
-								echo "<td>" . $row['name'] . "</td>";
-								echo "<td>" . $row['size'] . "</td>";
-								echo "<td>" . $row['sku'] . "</td>";
-								echo "<td>" . $row['condition_id'] . "</td>";
-								echo "<td>" . $row['purchase_date'] . "</td>";
-								echo "<td>" . $row['cost'] . "</td>";
-								echo "<td>" . $row['listed_price'] . "</td>";
-								echo "<td>" . $row['sold_price'] . "</td>";
-								echo "<td>" . $row['sold_date'] . "</td>";
-								echo "<td>" . $row['description'] . "</td>";
-								echo "</tr>";
-							}
-
-							echo "</table>";
-
-							mysqli_close($con);
-							?>
+						<div class="inventory">
+							<?php require 'php/get_company_inventory.php' ?>
 						</div>
 					</div>
 				</div>
@@ -118,77 +66,45 @@
 					<div class="widget personal">
 						<div class="widget-inner">
 							<h3 class="widget-title">Personal</h3>
-							
-							<a href="add_inventory.php"><div class="insert-inventory"><img class="btn insert" src="icons/action/add.svg" alt="add_btn"/></div></a>
-							
+							<div>
+								<a href="#" id="ins-btn-personal" class="ins-btn"><img src="icons/action/add_newitem.svg" alt="add_btn"/></a>
+							</div>
 						</div>
-						<div class="table inventory">
-							<?php
-							$con = mysqli_connect('localhost','jeramiec','1234');
-
-							if (mysqli_connect_errno()){
-								echo "Failed to connect to MySQL: " . mysqli_connect_error();
-							}
-							
-							mysqli_select_db($con,'tallyup');
-							$query = "SELECT p.*, i.inventory_id, i.account_id, i.description, i.listed_price, i.sold_price, i.sold_date, e.cost, e.purchase_date FROM product p INNER JOIN inventory i ON (p.product_id = i.product_id) LEFT JOIN expense e ON (e.product_id = i.product_id) WHERE category_id = 2 AND i.account_id = {$_SESSION['id']}"; // Query for returning user-unique inventory
-							$result = mysqli_query($con, $query);
-							
-							if($result == FALSE){
-								die(mysql_erorr());
-							}
-
-							echo "<table>
-							<tr>
-								<th>Status</th>
-								<th>Name</th>
-								<th>Size</th>
-								<th>SKU</th>
-								<th>Condition</th>
-								<th>Purchase date</th>
-								<th>Purchase total</th>
-								<th>Listed price</th>
-								<th>Sold price</th>
-								<th>Sold date</th>
-								<th>Notes</th>
-							</tr>";
-
-							while($row = mysqli_fetch_array($result)){
-								echo "<tr>";
-								echo "<td>" . $row['status_id'] . "</td>";
-								echo "<td>" . $row['name'] . "</td>";
-								echo "<td>" . $row['size'] . "</td>";
-								echo "<td>" . $row['sku'] . "</td>";
-								echo "<td>" . $row['condition_id'] . "</td>";
-								echo "<td>" . $row['purchase_date'] . "</td>";
-								echo "<td>" . $row['cost'] . "</td>";
-								echo "<td>" . $row['listed_price'] . "</td>";
-								echo "<td>" . $row['sold_price'] . "</td>";
-								echo "<td>" . $row['sold_date'] . "</td>";
-								echo "<td>" . $row['description'] . "</td>";
-								echo "</tr>";
-							}
-
-							echo "</table>";
-
-							mysqli_close($con);
-							?>
+						<div class="inventory">
+							<?php require 'php/get_personal_inventory.php' ?>
 						</div>
 					</div>
 				</div>
+				
+				<div class="small-widgets">
+					<div class="widget insight">
+						<div class="widget-inner">
+							<select name="insight" id="insight">
+								<option value="overall">Overall</option>
+								<option value="company">Company</option>
+								<option value="personal">Personal</option>
+							</select>
+							
+						</div>
+
+					</div>
+				</div>
+				
 			</div>
 			
+			
+			<!-- MODAL -->
 			
 			<div class="bg-modal">
 				<div class="modal-content">
 					<div class="modal-head">
-						<h3>Insert new item to inventory</h3>
+						<h3>Insert new item into inventory</h3>
 					</div>
 					<div class="close">
 						<a href="" id="close-btn" class="close-btn"><img src="icons/action/close.svg" alt="close_btn"/></a>
 					</div>
 					<div class="modal-form">
-						<form action="queries/insert.php" method="post">
+						<form action="php/queries/insert.php" method="post">
 							<div class="row1">
 								<div>
 									<label>Item name</label>
@@ -210,7 +126,7 @@
 								</div>
 								<div>
 									<label>Condition</label>
-									<select id="category" name="category">
+									<select id="condition" name="condition">
 										<option value=0>Brand new</option>
 										<option value=1>Like new</option>
 										<option value=2>Used</option>
@@ -220,7 +136,12 @@
 								</div>
 								<div>
 									<label>Status</label>
-									<input type="text" name="status">
+									<select id="status" name="status">
+										<option value=0>Unlisted</option>
+										<option value=1>Listed</option>
+										<option value=2>Pending</option>
+										<option value=3>Sold</option>
+									</select>
 								</div>
 							</div>
 							<div class="row3">

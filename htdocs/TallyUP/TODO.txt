@@ -1,17 +1,21 @@
 NEXT:
-- FIX CONDITIONS AND STATUS DROPDOWN MENUS
 - work on inventory
-	-right click to edit/add notes to items
+	-right click (or direct click) to edit/add notes to items
+	-instead of delete button, make a "mark sold" button?
+	-put delete button into EDIT button
 	-stylize insert form
 	-insert into personal inventory
 	-create product entry, then create inventory entry simutaneaously
-- work on expenses
-	-right click to edit/add notes to items
-	-pop-up open for adding new items
+	-add style to tables
 
-- add style to tables
+- mimic design on expenses
 
-- organize file structure
+- creating update triggers (when item is sold update listing to "sold)??
+
+- FOR 'INVOICES' :: Just create a template very similar to paypal's template system.
+- login page
+
+- table data sorting
 
 
 
@@ -21,8 +25,8 @@ FUTURE:
 - settings page
 - more interactiveness
 
-- design other web pages
-
 - create admin view (shows all inventory, sales, etc.)
+
+- organize file structure
 
 - returned items?
