@@ -7,7 +7,7 @@
 
 	mysqli_select_db($con,'tallyup');
 	$query = "SELECT * FROM tallyup.show_all_inventory_product WHERE category != 
-		'Personal assets' AND account_id = {$_SESSION['id']}";
+		'Personal assets' AND account_id = {$_SESSION['account_id']}";
 	$result = mysqli_query($con, $query);
 
 	if($result == FALSE){
@@ -43,11 +43,11 @@
 		echo "<td>" . $row['sku'] . "</td>";
 		echo "<td>" . $row['condition'] . "</td>";
 		echo "<td>" . $row['purchase_date'] . "</td>";
-		echo "<td>" . $row['cost'] . "</td>";
+		echo "<td>" . $row['purchase_price'] . "</td>";
 		echo "<td>" . $row['listed_price'] . "</td>";
 		echo "<td>" . $row['sold_price'] . "</td>";
 		echo "<td>" . $row['sold_date'] . "</td>";
-		echo "<td><a href=php/queries/edit.php?id=$id id=edit-$id class=edit-$id><img src='icons/action/edit_item.svg' alt='edit_btn'/></a>
+		echo "<td><a href=inventory_edit.php?id=$id id=edit-$id class=edit-$id><img src='icons/action/edit_item.svg' alt='edit_btn'/></a>
 				<a href=php/queries/delete.php?id=$id id=delete-$id class=delete-$id><img src='icons/action/delete_item.svg' alt='del_btn'/></a></td>";
 		echo "</tr>";
 	}
