@@ -22,7 +22,7 @@ session_start();
 					<div class="sidebar">
 						<div class="logo">
 							<h2>TallyUP</h2>
-							<h5>Welcome back, <?php echo $_SESSION['first_name']?> #<?php echo $_SESSION['id']?></h5>
+							<h5>Welcome back, <?php echo $_SESSION['first_name']?> #<?php echo $_SESSION['account_id']?></h5>
 						</div>
 						<ul>
 							<li><a class="current" href="homepage.php"><img class="btn home" src="icons/dashboard.svg" alt="home_btn"/>homepage</a></li>

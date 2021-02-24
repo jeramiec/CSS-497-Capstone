@@ -1,12 +1,13 @@
 NEXT:
 - work on inventory
-	-right click (or direct click) to edit/add notes to items
+	-insert.php ;; figure out what user should insert
+	-update.php ;; get it working
+	-figure out how items are inserted into expense sheet
 	-instead of delete button, make a "mark sold" button?
-	-put delete button into EDIT button
-	-stylize insert form
-	-insert into personal inventory
-	-create product entry, then create inventory entry simutaneaously
-	-add style to tables
+		-put delete button into EDIT button
+	-stylize insert and edit form
+	-add CSS style to tables
+	-translate into personal table
 
 - mimic design on expenses
 
@@ -17,6 +18,9 @@ NEXT:
 
 - table data sorting
 
+- homepage graphics/graphs
+
+- create logout button
 
 
 FUTURE:

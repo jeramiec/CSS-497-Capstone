@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Notifications page</title>
+		<title>Expense page</title>
 		<link rel="stylesheet" href="css/mainstyle.css" />
 	</head>
 	
@@ -71,7 +71,7 @@
 							</div>
 						</div>
 						<div class="inventory">
-							
+							<?php require 'php/get_personal_expenses.php' ?>
 						</div>
 					</div>
 				</div>
@@ -84,8 +84,8 @@
 								<option value="company">Company</option>
 								<option value="personal">Personal</option>
 							</select>
+							
 						</div>
-						
 						
 					</div>
 				</div>
@@ -93,19 +93,21 @@
 			</div>
 			
 			
+			<!-- MODAL -->
+			
 			<div class="bg-modal">
 				<div class="modal-content">
 					<div class="modal-head">
-						<h3>Insert new item into inventory</h3>
+						<h3>Insert new item into expenses</h3>
 					</div>
 					<div class="close">
 						<a href="" id="close-btn" class="close-btn"><img src="icons/action/close.svg" alt="close_btn"/></a>
 					</div>
-					<div class="modal-form">
-						<form action="queries/insert.php" method="post">
+					<div class="insert-form">
+						<form action="php/queries/insert.php" method="post">
 							<div class="row1">
 								<div>
-									<label>Item name</label>
+									<label>Purchase price</label>
 									<input type="text" name="name" required>
 								</div>
 								<div>
@@ -166,7 +168,7 @@
 								<div>
 									<label>Category</label>
 									<select id="category" name="category">
-										<option value=0>Merchendise</option>
+										<option value=0>Merchandise</option>
 										<option value=1>Company item/tool</option>
 										<option value=2>Personal item/tool</option>
 									</select>
@@ -177,8 +179,8 @@
 								</div>
 							</div>
 							
-							<button type="submit" name="submit">Save</button>
-							<button type="reset" name="reset">Clear</button>
+							<button type="submit" name="submit"><img src="icons/action/save_item.svg"></button>
+							<button type="reset" name="reset"><img src="icons/action/clear_item.svg"></button>
 						</form>
 					</div> 
 				</div>

@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Notifications page</title>
+		<title>Inventory page</title>
 		<link rel="stylesheet" href="css/mainstyle.css" />
 	</head>
 	
@@ -22,7 +22,7 @@
 					<div class="sidebar">
 						<div class="logo">
 							<h2>TallyUP</h2>
-							<h5>Welcome back, <?php echo $_SESSION['username']?> #<?php echo $_SESSION['id']?></h5>
+							<h5>Welcome back, <?php echo $_SESSION['username']?> #<?php echo $_SESSION['account_id']?></h5>
 						</div>
 						<ul>
 							<li><a href="homepage.php"><img class="btn home" src="icons/dashboard.svg" alt="home_btn"/>homepage</a></li>
@@ -103,7 +103,7 @@
 					<div class="close">
 						<a href="" id="close-btn" class="close-btn"><img src="icons/action/close.svg" alt="close_btn"/></a>
 					</div>
-					<div class="modal-form">
+					<div class="insert-form">
 						<form action="php/queries/insert.php" method="post">
 							<div class="row1">
 								<div>
@@ -146,6 +146,10 @@
 							</div>
 							<div class="row3">
 								<div>
+									<label>Purchase price</label>
+									<input type="text" name="purchase_price">
+								</div>
+								<div>
 									<label>Purchase date</label>
 									<input type="date" name="p_date">
 								</div>
@@ -168,10 +172,14 @@
 								<div>
 									<label>Category</label>
 									<select id="category" name="category">
-										<option value=0>Merchendise</option>
+										<option value=0>Merchandise</option>
 										<option value=1>Company item/tool</option>
 										<option value=2>Personal item/tool</option>
 									</select>
+								</div>
+								<div>
+									<label>Weight</label>
+									<input type="text" name="weight">
 								</div>
 								<div>
 									<label>Notes</label>
@@ -179,13 +187,13 @@
 								</div>
 							</div>
 							
-							<button type="submit" name="submit">Save</button>
-							<button type="reset" name="reset">Clear</button>
+							<button type="submit" name="inventoryinsert"><img src="icons/action/save_item.svg"></button>
+							<button type="reset" name="reset"><img src="icons/action/clear_item.svg"></button>
 						</form>
 					</div> 
 				</div>
 			</div>
-			
-			<script src="js/main.js"></script>
+		</main>
+		<script src="js/main.js"></script>
 	</body>
 </html>

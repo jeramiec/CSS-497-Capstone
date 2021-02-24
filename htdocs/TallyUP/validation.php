@@ -17,7 +17,7 @@ if($num == 1) {
 	$_SESSION['username'] = $username;
 	
 	$row = mysqli_fetch_assoc($result);
-	$_SESSION['id'] = $row['account_id'];
+	$_SESSION['account_id'] = $row['account_id'];
 	$_SESSION['first_name'] = $row['first_name'];
 	
 	header('location:homepage.php');
