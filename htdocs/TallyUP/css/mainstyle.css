@@ -158,7 +158,6 @@ main .main-container{
 	text-transform: uppercase;
 }
 
-
 .widget-title {
 	display: flex;
 	position: relative;
@@ -240,10 +239,6 @@ main .main-container{
 	margin-bottom: 20px;
 }
 
-.modal-form form {
-}
-
-
 input {
 	width: 100%;
 	padding: 8px, 16px;
@@ -286,6 +281,76 @@ tr:hover{
 	background-color: #F5F5F5;
 }
 
-.delete-btn{
-	height: 2em;
+
+
+
+/* BUTTONS */
+
+button {
+	background-color: none;
+	background: transparent;
+	border: none;
+	color: transparent;
+	transition-duration: 0.4s;
+}
+
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+
+/* INSERT/EDIT FORM */
+
+.insert-form form input, select, textarea{
+	display: block;
+	padding: 8px 16px;
+	border: none;
+	margin: 7px;
+	font-size: 15px;
+	border-radius: 20px;
+	background: rgba(0,0,0,0.05);
+	transition: background 0.4s;
+}
+
+.insert-form form input:focus{
+	outline-width: 0;
+	background: rgba(31,134,252, 0.15);
+	transition: background 0.5s;
+}
+
+.insert-form form select:focus{
+	outline-width: 0;
+	background: rgba(31,134,252, 0.15);
+	transition: background 0.5s;
+}
+
+.insert-form form select:focus{
+	outline-width: 0;
+	background: rgba(31,134,252, 0.15);
+	transition: background 0.5s;
+}
+
+.insert-form form textarea:focus{
+	outline-width: 0;
+	background: rgba(31,134,252, 0.15);
+	transition: background 0.5s;
+}
+
+.insert-form label{
+	padding-left: 10px;
+	font-size: 14;
+	color: #444444;
+}
+
+.insert-form form .row1, .row2, .row3, .row4, .row5, .row6, .row7{
+	display: flex;
+	vertical-align: center;
+	padding: 5px;
+}
+
+.insert-form button:hover{
+	background: #3594A9;
+	transition: background 0.4s;
 }
