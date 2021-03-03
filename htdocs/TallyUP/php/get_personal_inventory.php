@@ -7,12 +7,8 @@
 	
 	mysqli_select_db($con,'tallyup');
 	$query = "SELECT * FROM tallyup.show_all_inventory_product WHERE category = 
-		'Personal assets' AND account_id = {$_SESSION['id']}";
-	$result = mysqli_query($con, $query);
-	
-	if($result == FALSE){
-		die(mysql_erorr());
-	}
+		'Personal assets' AND account_id = {$_SESSION['account_id']}";
+	$result = mysqli_query($con, $query) or die(mysqli_error());
 
 	echo "<table>
 			<thead>
@@ -35,8 +31,26 @@
 	while($row = mysqli_fetch_array($result)){
 		
 		$id = $row['product_id'];
+		$type = "inventory";
 		
 		echo "<tr>";
+		
+		if ($row['status'] == 'Unlisted') {
+			echo "<td><img src='icons/status/unlisted.svg' alt='status_unlisited'/></td>";
+		}
+		else if ($row['status'] == 'Listed') {
+			echo "<td><img src='icons/status/listed.svg' alt='status_lisited'/></td>";
+		}
+		else if ($row['status'] == 'Listed; pending') {
+			echo "<td><img src='icons/status/pending.svg' alt='status_pending'/></td>";
+		}
+		else if ($row['status'] == 'Sold') {
+			echo "<td><img src='icons/status/sold.svg' alt='status_sold'/></td>";
+		}
+		else {
+			echo "<td>" . $row['status'] . "</td>";
+		}
+		
 		echo "<td>" . $row['status'] . "</td>";
 		echo "<td>" . $row['name'] . "</td>";
 		echo "<td>" . $row['size'] . "</td>";
@@ -48,7 +62,7 @@
 		echo "<td>" . $row['sold_price'] . "</td>";
 		echo "<td>" . $row['sold_date'] . "</td>";
 		echo "<td><a href=inventory_edit.php?id=$id id=edit-$id class=edit-$id><img src='icons/action/edit_item.svg' alt='edit_btn'/></a>
-				<a href=php/queries/delete.php?id=$id id=delete-$id class=delete-$id><img src='icons/action/delete_item.svg' alt='del_btn'/></a></td>";
+				<a href=php/queries/delete.php?id=$id&type=$type id=delete-$id class=delete-$id><img src='icons/action/delete_item.svg' alt='del_btn'/></a></td>";
 		echo "</tr>";
 	}
 

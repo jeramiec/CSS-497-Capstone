@@ -1,15 +1,29 @@
+2) inventory status tag // expense type tag
+2) click item for specific details
+2) data / sum / insights
+3) login page
+
+4) login, account creation
+5) account settings and preferences
+
+6) sales
+7) notifications
+8) invoices
+
+9) shopping?
+
+10) 'mark sold' -> prompt to specify price and date -> item added to sales
+10) stylize stylize stylize
+
+
 NEXT:
 - work on inventory
-	-insert.php ;; figure out what user should insert
-	-update.php ;; get it working
-	-figure out how items are inserted into expense sheet
+	-figure out how items are inserted into EXPENSE sheet
 	-instead of delete button, make a "mark sold" button?
 		-put delete button into EDIT button
 	-stylize insert and edit form
 	-add CSS style to tables
-	-translate into personal table
-
-- mimic design on expenses
+- mimic all design on expenses
 
 - creating update triggers (when item is sold update listing to "sold)??
 

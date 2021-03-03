@@ -22,12 +22,12 @@
 					<div class="sidebar">
 						<div class="logo">
 							<h2>TallyUP</h2>
-							<h5>Welcome back, <?php echo $_SESSION['username']?> #<?php echo $_SESSION['account_id']?></h5>
+							<h5>Welcome back, <?php echo $_SESSION['username']?> #<?php echo $_SESSION['account_id'] ?></h5>
 						</div>
 						<ul>
 							<li><a href="homepage.php"><img class="btn home" src="icons/dashboard.svg" alt="home_btn"/>homepage</a></li>
 							<li><a href="notifications.php"><img class="btn notification" src="icons/notifications.svg" alt="notif_btn"/>notifications</a></li>
-							<li><a class="current" href="inventory.php"><img class="btn inventory" src="icons/inventory.svg" alt="inv_btn"/>inventory</a></li>
+							<li class="current"><a href="inventory.php"><img class="btn inventory" src="icons/inventory.svg" alt="inv_btn"/>inventory</a></li>
 							<li><a href="sales.php"><img class="btn sales" src="icons/sales.svg" alt="sale_btn"/>sales</a></li>
 							<li><a href="expenses.php"><img class="btn expenses" src="icons/expenses.svg" alt="exp_btn"/>expenses</a></li>
 							<li><a href="invoices.php"><img class="btn invoices" src="icons/invoices.svg" alt="invoi_btn"/>invoices</a></li>

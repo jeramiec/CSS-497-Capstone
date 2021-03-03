@@ -6,22 +6,26 @@
 	}
 
 	mysqli_select_db($con,'tallyup');
-	$query = "SELECT * FROM tallyup.show_all_expense_product WHERE category = 
+	$query = "SELECT * FROM tallyup.show_all_expense_product WHERE category != 
 		'Personal assets' AND account_id = {$_SESSION['account_id']}";
 	$result = mysqli_query($con, $query) or die(mysqli_error());
 
 	echo "<table>
 			<thead>
 				<tr>
-					<th>Type</th>
+					<th>Status</th>
 					<th>Name</th>
+					<th>Size</th>
+					<th>Color</th>
+					<th>Sold date</th>
 					<th>Purchase price</th>
-					<th>Purchase date</th>
-					<th>Purchase location</th>
-					<th></th>
+					<th>Sold price</th>
+					<th>Profit</th>
+					<th>Invoice #</th>
 				</tr>
 			</thead>";
 
+	/*
 	echo "<tbody>";
 	while($row = mysqli_fetch_array($result)){
 		
@@ -40,7 +44,7 @@
 		echo "</tr>";
 	}
 
-	echo "</tbody></table>";
+	echo "</tbody></table>"; */
 
 	mysqli_close($con);
 ?>

@@ -10,7 +10,6 @@ document.getElementById('ins-btn-personal').addEventListener('click',
 	}
 );
 
-
 /*
 
 https://www.youtube.com/watch?v=C6227evfBig&t=825s&ab_channel=Bedimcode

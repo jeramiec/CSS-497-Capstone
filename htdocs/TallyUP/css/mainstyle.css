@@ -1,6 +1,7 @@
 /*CSS file*/
 
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap');
 
 *{
 	margin: 0;
@@ -11,7 +12,7 @@
 }
 
 body{
-	font-family: "Roberto", sans-serif;
+	font-family: "Roboto", sans-serif;
 	background: #F5F6FA;
 	padding-bottom: 50px;
 }
@@ -142,7 +143,7 @@ main .main-container{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	height: auto;
+	height: 100%;
 	padding: 25px;
 	border-radius: 5px;
 	background: #ffffff;
@@ -240,7 +241,6 @@ main .main-container{
 }
 
 input {
-	width: 100%;
 	padding: 8px, 16px;
 	margin: 4px, 0;
 	box-sizing: border-box;
@@ -294,8 +294,16 @@ button {
 	transition-duration: 0.4s;
 }
 
+
 button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	outline: 0;
+}
+
+
+.addtoinventory {
+	display: block;
+	color: blue;
 }
 
 
@@ -353,4 +361,31 @@ button:hover {
 .insert-form button:hover{
 	background: #3594A9;
 	transition: background 0.4s;
+}
+
+.reveal-if-checked {
+	display: block;
+	opacity: 0;
+	max-height: 0;
+	overflow: hidden;
+	transform: scale(0.6);
+	transition: 0.8s;
+	clear: both;
+}
+
+input[type="checkbox"]:checked ~ .reveal-if-checked {
+	display: block;
+	opacity: 1;
+	max-height: 1000px;
+	overflow: visible;
+	transform: scale(1);
+}
+
+.expenses .row2 {
+	display: inline;
+}
+
+.expenses .column {
+	float: left;
+	width: 33.33%;
 }
