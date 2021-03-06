@@ -168,6 +168,16 @@ main .main-container{
 	z-index: 0;
 }
 
+.widget-inner .insight-title {
+	width: 5px;
+	margin-right: 40px;
+	padding-right: 200px;
+}
+
+.insight-result {
+	color: #29CB97;
+}
+
 
 
 /* WIDGETS - INVENTORY */

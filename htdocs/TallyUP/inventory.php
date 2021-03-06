@@ -57,7 +57,7 @@
 							</div>
 						</div>
 						<div class="inventory">
-							<?php require 'php/get_company_inventory.php' ?>
+							<?php $companyInventory = true; require 'php/get_inventory.php' ?>
 						</div>
 					</div>
 				</div>
@@ -71,12 +71,12 @@
 							</div>
 						</div>
 						<div class="inventory">
-							<?php require 'php/get_personal_inventory.php' ?>
+							<?php $personalInventory = true; require 'php/get_inventory.php' ?>
 						</div>
 					</div>
 				</div>
 				
-				<div class="small-widgets">
+				<div class="large-widgets">
 					<div class="widget insight">
 						<div class="widget-inner">
 							<select name="insight" id="insight">
@@ -86,7 +86,9 @@
 							</select>
 							
 						</div>
-
+						<div class="widget-content">
+							<?php $insights = true; require 'php/get_inventory_insights.php'?>
+						</div>
 					</div>
 				</div>
 				
@@ -127,6 +129,7 @@
 								<div>
 									<label>Condition</label>
 									<select id="condition" name="condition">
+										<option value=null selected> - Select condition - </option>
 										<option value=0>Brand new</option>
 										<option value=1>Like new</option>
 										<option value=2>Used</option>
@@ -137,6 +140,7 @@
 								<div>
 									<label>Status</label>
 									<select id="status" name="status">
+										<option value=0 selected> - Select status - </option>
 										<option value=0>Unlisted</option>
 										<option value=1>Listed</option>
 										<option value=2>Pending</option>
@@ -172,6 +176,7 @@
 								<div>
 									<label>Category</label>
 									<select id="category" name="category">
+										<option value='' selected> - Select category - </option>
 										<option value=0>Merchandise</option>
 										<option value=1>Company item/tool</option>
 										<option value=2>Personal item/tool</option>

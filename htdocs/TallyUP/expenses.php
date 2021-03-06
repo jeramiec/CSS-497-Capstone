@@ -56,7 +56,7 @@
 							</div>
 						</div>
 						<div class="expenses">
-							<?php require 'php/get_company_expenses.php' ?>
+							<?php $companyExpenses = true; require 'php/get_expenses.php' ?>
 						</div>
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 							</div>
 						</div>
 						<div class="inventory">
-							<?php require 'php/get_personal_expenses.php' ?>
+							<?php $personalExpenses = true; require 'php/get_expenses.php' ?>
 						</div>
 					</div>
 				</div>
@@ -141,6 +141,7 @@
 										<div>
 											<label>Condition</label>
 											<select id="condition" name="condition">
+												<option value=null selected> - Select condition - </option>
 												<option value=0>Brand new</option>
 												<option value=1>Like new</option>
 												<option value=2>Used</option>
@@ -151,6 +152,7 @@
 										<div>
 											<label>Status</label>
 											<select id="status" name="status">
+												<option value=0 selected> - Select status - </option>
 												<option value=0>Unlisted</option>
 												<option value=1>Listed</option>
 												<option value=2>Pending</option>
@@ -182,6 +184,7 @@
 								<div>
 									<label>Category</label>
 									<select id="category" name="category">
+										<option disabled selected> - Select category - </option>
 										<option value=0>Merchandise</option>
 										<option value=1>Company item/tool</option>
 										<option value=2>Personal item/tool</option>

@@ -1,19 +1,31 @@
-2) inventory status tag // expense type tag
-2) click item for specific details
+order by productid for personal inventory, and company/personal expenses, and sales
+
 2) data / sum / insights
+	-top spend categories: pie chart showing spending categories
+	-weekly/monthly sold
+	-current available stock (created view)
+	-number items sold (created view)
+	-net profit (calculate this in PHP)
+
 3) login page
 
 4) login, account creation
 5) account settings and preferences
 
-6) sales
 7) notifications
 8) invoices
 
 9) shopping?
 
 10) 'mark sold' -> prompt to specify price and date -> item added to sales
+10) click item for specific details ... make better UI for this
 10) stylize stylize stylize
+
+
+USE THIS TO DEVELOP TABLE FILTER: https://www.youtube.com/watch?v=8SL_hM1a0yo&ab_channel=dcode
+
+SETTINGS/PREFERENCES:
+- automatically mark items sold sold / keep them pending if sold
 
 
 NEXT:
@@ -48,3 +60,7 @@ FUTURE:
 - organize file structure
 
 - returned items?
+
+
+Known bugs:
+- cant change sold date, it will only automatically update to current date when an item is sold

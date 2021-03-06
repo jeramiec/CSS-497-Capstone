@@ -45,8 +45,37 @@ session_start();
 					<h4>View sold items</h4>
 				</div>
 				
+				<div class="medium-widgets">
+					<div class="widget num-sales">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h3 class="insight-title">Total sales<h3>
+								<h1 class="insight-result">$<?php $total_sales = true; require 'php/get_sales_insights.php'?><h1>
+							</div>
+						</div>
+					</div>
+					<div class="widget profit">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h3 class="insight-title">Profit<h3>
+								<h1 class="insight-result">$<?php $profit = true; require 'php/get_sales_insights.php'?><h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 				<div class="large-widgets">
-					<div class="widget company">
+					<div class="widget graph">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h2>Daily, weekly, all-time Graph<h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="large-widgets">
+					<div class="widget sales">
 						<div class="widget-inner">
 							<h3 class="widget-title">All sales</h3>
 							<div>

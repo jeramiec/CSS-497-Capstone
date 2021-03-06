@@ -64,7 +64,7 @@
 				</div>
 				<div class="large-widgets">
 					<div class="widget edit">
-					<h4 class="go-back">Inventory</h4>
+					<h4 class="go-back"><a href="inventory.php"><img src="icons/action/go_back.svg" width="12">Inventory</a></h4>
 						<div class="widget-inner">
 							<h3 class="widget-title"><?php echo $row['name'] ?></h3>
 						</div>
@@ -92,6 +92,7 @@
 									<div>
 										<label>Condition</label>
 										<select id="condition" name="condition">
+											<option value=null <?php if($row['condition'] == NULL) { echo 'selected=selected'; }?>> - Select condition - </option>
 											<option value=0 <?php if($row['condition'] == 'Brand new') { echo 'selected=selected'; }?>>Brand new</option>
 											<option value=1 <?php if($row['condition'] == 'Like new') { echo 'selected=selected'; }?>>Like new</option>
 											<option value=2 <?php if($row['condition'] == 'Used') { echo 'selected=selected'; }?>>Used</option>
@@ -104,7 +105,7 @@
 										<select id="status" name="status">
 											<option value=0 <?php if($row['status'] == 'Unlisted') { echo 'selected=selected'; }?>>Unlisted</option>
 											<option value=1 <?php if($row['status'] == 'Listed') { echo 'selected=selected'; }?>>Listed</option>
-											<option value=2 <?php if($row['status'] == 'Pending') { echo 'selected=selected'; }?>>Pending</option>
+											<option value=2 <?php if($row['status'] == 'Listed; pending') { echo 'selected=selected'; }?>>Pending</option>
 											<option value=3 <?php if($row['status'] == 'Sold') { echo 'selected=selected'; }?>>Sold</option>
 										</select>
 									</div>
@@ -112,7 +113,7 @@
 								<div class="row3">
 									<div>
 										<label>Purchase price</label>
-										<input type="text" name="purchase_price">
+										<input type="text" name="purchase_price" value="<?php echo $row['purchase_price']?>">
 									</div>
 									<div>
 										<label>Purchase date</label>
@@ -157,7 +158,7 @@
 									
 									<button type="submit" name="inventoryupdate"><img src="icons/action/save_item.svg"></button>
 									<button type="reset" name="reset"><img src="icons/action/clear_item.svg"></button>
-									<button type="delete" name="delete"><img src='icons/action/delete_item2.svg' alt='del_btn'/>
+									<button type="delete" name="delete"><img src='icons/action/delete_item2.svg' alt='del_btn'/></button>
 								</div>
 							</form>
 						</div>

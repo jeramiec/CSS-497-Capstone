@@ -27,18 +27,29 @@ if(isset($_POST['inventoryinsert'])){
 		$weight = $_POST['weight'];
 		$notes = $_POST['notes'];
 		
+		if($condition_id == null) { $condition_id = "NULL"; }
+		if($purchase_price == null) { $purchase_price = "NULL"; }
+		if($p_date == null) { $p_date = "NULL"; }
+		if($list_price == null) { $list_price = "NULL"; $status_id = 0; }
+		else { $status_id = 1; }
+		if($sold_price == null) { $sold_price = "NULL"; }
+		else { $status_id = 2; $s_date = date("Ymd"); }
+		if($s_date == null) { $s_date = "NULL"; }
+		if($weight == null) { $weight = "NULL"; }
+	
 		$query = "INSERT INTO product(name, color, status_id, product_type_id, category_id, size, sku, condition_id, weight, notes)
-			VALUES('$name', '$color', '$status_id', NULL, '$category_id', '$size', '$sku', '$condition_id', '$weight', '$notes')";
+			VALUES('$name', '$color', '$status_id', NULL, '$category_id', '$size', '$sku', $condition_id, $weight, '$notes')";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
 		$query = "INSERT INTO inventory(account_id, product_id, listed_price, sold_price, sold_date)
-			VALUES('$account_id', (SELECT max(product_id) FROM product), '$list_price', '$sold_price', '$s_date')";
+			VALUES('$account_id', (SELECT max(product_id) FROM product), $list_price, $sold_price, $s_date)";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
+		
 		
 		// Create an expense row if "purchase date" and/or "purchase price" is not NULL
 		if($purchase_price != NULL || $p_date != NULL) {
 			$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
-			VALUES('$account_id', (SELECT max(product_id) FROM product), '$purchase_price', '$p_date', NULL, '$notes')";
+			VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, $p_date, NULL, '$notes')";
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 		
@@ -78,28 +89,31 @@ else if(isset($_POST['expenseinsert'])){
 		$s_date = $_POST['s_date'];
 		$weight = $_POST['weight'];
 		
+		if($condition_id == null) { $condition_id = "NULL"; }
+		if($purchase_price == null) { $purchase_price = "NULL"; }
+		if($p_date == null) { $p_date = "NULL"; }
+		if($list_price == null) { $list_price = "NULL"; $status_id = 0; }
+		else { $status_id = 1; }
+		if($sold_price == null) { $sold_price = "NULL"; }
+		else { $status_id = 2; $s_date = date("Ymd"); }
+		if($s_date == null) { $s_date = "NULL"; }
+		if($weight == null) { $weight = "NULL"; }
+		
 		$query = "INSERT INTO product(name, color, status_id, product_type_id, category_id, size, sku, condition_id, weight, notes)
-				VALUES('$name', '$color', '$status_id', NULL, '$category_id', '$size', '$sku', '$condition_id', '$weight', '$notes')";
+				VALUES('$name', '$color', '$status_id', NULL, '$category_id', '$size', '$sku', $condition_id, $weight, '$notes')";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
 		if(isset($_POST['include-inventory'])){
-			echo "Including into inventory!";
 			$query = "INSERT INTO inventory(account_id, product_id, listed_price, sold_price, sold_date, expense_id)
-				VALUES('$account_id', (SELECT max(product_id) FROM product), '$list_price', '$sold_price', '$s_date', (SELECT max(expense_id) FROM expense))";
+				VALUES('$account_id', (SELECT max(product_id) FROM product), $list_price, $sold_price, $s_date, (SELECT max(expense_id) FROM expense))";
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 		
 		$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
-			VALUES('$account_id', (SELECT max(product_id) FROM product), '$purchase_price', '$p_date', '$p_location', '$notes')";
+			VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, '$p_date', '$p_location', '$notes')";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
-		
-		if($run) {
-			echo "Successful insert";
-			header('location:../../expenses.php');
-		}
-		else {
-			echo "Error: Failed insert";
-		}
+
+		header('location:../../expenses.php');
 		
 	}
 	else {

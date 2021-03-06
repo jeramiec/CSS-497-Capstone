@@ -59,7 +59,7 @@
 				</div>
 				<div class="large-widgets">
 					<div class="widget edit">
-					<h4 class="go-back">Expenses</h4>
+					<h4 class="go-back"><a href="expenses.php"><img src="icons/action/go_back.svg" width="12">Expenses</a></h4>
 						<div class="widget-inner">
 							<h3 class="widget-title"><?php echo $row['name'] ?></h3>
 						</div>
@@ -131,7 +131,7 @@
 											<select id="status" name="status">
 												<option value=0 <?php if($row['status'] == 'Unlisted') { echo 'selected=selected'; }?>>Unlisted</option>
 												<option value=1 <?php if($row['status'] == 'Listed') { echo 'selected=selected'; }?>>Listed</option>
-												<option value=2 <?php if($row['status'] == 'Pending') { echo 'selected=selected'; }?>>Pending</option>
+												<option value=2 <?php if($row['status'] == 'Listed; pending') { echo 'selected=selected'; }?>>Pending</option>
 												<option value=3 <?php if($row['status'] == 'Sold') { echo 'selected=selected'; }?>>Sold</option>
 											</select>
 										</div>
@@ -185,6 +185,7 @@
 								</div>
 								<button type="submit" name="expenseupdate"><img src="icons/action/save_item.svg"></button>
 								<button type="reset" name="reset"><img src="icons/action/clear_item.svg"></button>
+								<button type="delete" name="delete"><img src='icons/action/delete_item2.svg' alt='del_btn'/></button>
 							</form>
 						</div>
 					</div>
