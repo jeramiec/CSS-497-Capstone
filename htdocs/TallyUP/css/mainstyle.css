@@ -43,15 +43,23 @@ body::-webkit-scrollbar-button {
 .wrapper {
 	display: flex;
 	position: relative;
-	z-index: 1;
+	z-index: 5;
 }
 
 .wrapper .sidebar{
+	overflow: hidden;
 	position: fixed;
-	width: 350px;
+	width: 90px;
 	height: 100%;
 	background: #FFFFFF;
-	padding: 30px;
+	padding: 20px;
+	box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+	transition: 0.35s, 0.5s;
+}
+
+.wrapper .sidebar:hover{
+	width: 350px;
+	height: 100%;
 }
 
 .wrapper .sidebar h2{
@@ -60,6 +68,12 @@ body::-webkit-scrollbar-button {
 	text-align: center;
 	margin-bottom: 30px 0;
 }
+
+.wrapper .sidebar h5{
+	position: absolute;
+	visibility: hidden;
+}
+
 
 .wrapper .sidebar ul li{
 	padding: 15px;
@@ -92,15 +106,27 @@ body::-webkit-scrollbar-button {
 	margin-right: 15px;
 }
 
+.wrapper .sidebar.settings{
+	width: 270px;
+	height: 100%;
+	transform: translate(-50px, 0);
+}
 
+.wrapper .sidebar.settings .current{
+	width: 250px;
+}
 
 
 /* MAIN CONTENTS */
 
 main .main-container{
 	width: 100%;
-	padding-left: 400px;
+	padding-left: 250px;
 	margin-top: 30px;
+}
+
+main .main-container .wrapper{
+	z-index: 1;
 }
 
 .main-title h4{
@@ -144,6 +170,7 @@ main .main-container{
 	flex-direction: column;
 	justify-content: flex-start;
 	height: 100%;
+	width: auto;
 	padding: 25px;
 	border-radius: 5px;
 	background: #ffffff;
@@ -174,9 +201,29 @@ main .main-container{
 	padding-right: 200px;
 }
 
+
+/* WIDGETS - HOMEPAGE */
+
+.medium-widgets.homepage{
+	display: flex;
+}
+
 .insight-result {
 	color: #29CB97;
 }
+
+.current-totals ul li{
+	display: inline;
+	line-height: 30px;
+	padding-right: 20px;
+}
+
+.current-totals ul li img{
+	vertical-align: middle;
+}
+
+
+/* WIDGETS - CHARTS */
 
 
 

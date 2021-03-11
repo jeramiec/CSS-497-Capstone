@@ -47,6 +47,25 @@
 					<h4>Manage your company or personal expenses</h4>
 				</div>
 				
+				<div class="medium-widgets">
+					<div class="widget num-sales">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h3 class="insight-title">Total purchases<h3>
+								<h1 class="insight-result">$<?php ?><h1>
+							</div>
+						</div>
+					</div>
+					<div class="widget profit">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h3 class="insight-title">Profit<h3>
+								<h1 class="insight-result">$<?php ?><h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 				<div class="large-widgets">
 					<div class="widget company">
 						<div class="widget-inner">

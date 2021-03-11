@@ -157,7 +157,7 @@
 								<div class="row7">
 									
 									<button type="submit" name="inventoryupdate"><img src="icons/action/save_item.svg"></button>
-									<button type="reset" name="reset"><img src="icons/action/clear_item.svg"></button>
+									<button type="reset" name="reset"><img src="icons/action/revert_item.svg"></button>
 									<button type="delete" name="delete"><img src='icons/action/delete_item2.svg' alt='del_btn'/></button>
 								</div>
 							</form>

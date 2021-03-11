@@ -33,7 +33,7 @@ if(isset($_POST['inventoryinsert'])){
 		if($list_price == null) { $list_price = "NULL"; $status_id = 0; }
 		else { $status_id = 1; }
 		if($sold_price == null) { $sold_price = "NULL"; }
-		else { $status_id = 2; $s_date = date("Ymd"); }
+		else { $status_id = 3; if($s_date == null) { $s_date = date("Ymd"); } }
 		if($s_date == null) { $s_date = "NULL"; }
 		if($weight == null) { $weight = "NULL"; }
 	
@@ -41,15 +41,28 @@ if(isset($_POST['inventoryinsert'])){
 			VALUES('$name', '$color', '$status_id', NULL, '$category_id', '$size', '$sku', $condition_id, $weight, '$notes')";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
-		$query = "INSERT INTO inventory(account_id, product_id, listed_price, sold_price, sold_date)
-			VALUES('$account_id', (SELECT max(product_id) FROM product), $list_price, $sold_price, $s_date)";
+		if($s_date == "NULL") {
+			$query = "INSERT INTO inventory(account_id, product_id, listed_price, sold_price, sold_date)
+			VALUES('$account_id', (SELECT max(product_id) FROM product), $list_price, $sold_price, DEFAULT)";
+		}
+		else {
+			$query = "INSERT INTO inventory(account_id, product_id, listed_price, sold_price, sold_date)
+			VALUES('$account_id', (SELECT max(product_id) FROM product), $list_price, $sold_price, '$s_date')";
+		}
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
 		
 		// Create an expense row if "purchase date" and/or "purchase price" is not NULL
-		if($purchase_price != NULL || $p_date != NULL) {
-			$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
-			VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, $p_date, NULL, '$notes')";
+		if($purchase_price != "NULL" || $p_date != "NULL") {
+			if($p_date == "NULL") {
+				$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
+				VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, DEFAULT, NULL, '$notes')";
+			}
+			else {
+				$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
+				VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, '$p_date', NULL, '$notes')";
+			}
+			
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 		
@@ -95,7 +108,7 @@ else if(isset($_POST['expenseinsert'])){
 		if($list_price == null) { $list_price = "NULL"; $status_id = 0; }
 		else { $status_id = 1; }
 		if($sold_price == null) { $sold_price = "NULL"; }
-		else { $status_id = 2; $s_date = date("Ymd"); }
+		else { $status_id = 3; $s_date = date("Ymd"); }
 		if($s_date == null) { $s_date = "NULL"; }
 		if($weight == null) { $weight = "NULL"; }
 		
@@ -109,8 +122,15 @@ else if(isset($_POST['expenseinsert'])){
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 		
-		$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
+		if($p_date == "NULL"){
+			$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
+			VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, DEFAULT, '$p_location', '$notes')";
+		}
+		else {
+			$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
 			VALUES('$account_id', (SELECT max(product_id) FROM product), $purchase_price, '$p_date', '$p_location', '$notes')";
+		}
+		
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 
 		header('location:../../expenses.php');

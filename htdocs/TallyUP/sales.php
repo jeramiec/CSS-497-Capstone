@@ -78,9 +78,6 @@ session_start();
 					<div class="widget sales">
 						<div class="widget-inner">
 							<h3 class="widget-title">All sales</h3>
-							<div>
-								<a href="#" id="ins-btn-company" class="ins-btn"><img src="icons/action/add_newitem.svg" alt="add_btn"/></a>
-							</div>
 						</div>
 						<div class="sales">
 							<?php require 'php/get_sales.php' ?>

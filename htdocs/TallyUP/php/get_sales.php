@@ -51,7 +51,7 @@
 		echo "<td>" . $row['sold_price'] . "</td>";
 		echo "<td>" . $row['profit'] . "</td>";
 		echo "<td></td>";
-		echo "<td><a href=expense_edit.php?id=$id id=edit-$id class=edit-$id><img src='icons/action/edit_item.svg' alt='edit_btn'/></a>
+		echo "<td><a href=inventory_edit.php?id=$id id=edit-$id class=edit-$id><img src='icons/action/edit_item.svg' alt='edit_btn'/></a>
 				<a href=php/queries/delete.php?id=$id&type=$type id=delete-$id class=delete-$id><img src='icons/action/delete_item.svg' alt='del_btn'/></a></td>";
 		echo "</tr>";
 	}

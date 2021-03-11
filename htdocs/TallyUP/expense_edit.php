@@ -184,7 +184,7 @@
 									</div>
 								</div>
 								<button type="submit" name="expenseupdate"><img src="icons/action/save_item.svg"></button>
-								<button type="reset" name="reset"><img src="icons/action/clear_item.svg"></button>
+								<button type="reset" name="reset"><img src="icons/action/revert_item.svg"></button>
 								<button type="delete" name="delete"><img src='icons/action/delete_item2.svg' alt='del_btn'/></button>
 							</form>
 						</div>

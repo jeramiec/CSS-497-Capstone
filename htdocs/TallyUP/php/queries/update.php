@@ -33,18 +33,31 @@ if(isset($_POST['inventoryupdate'])){	// Initiates an inventory update
 		if($purchase_price == null) { $purchase_price = "NULL"; }
 		if($p_date == null) { $p_date = "NULL"; }
 		if($list_price == null) { $list_price = "NULL"; $status_id = 0; }
-		else { $status_id = 1; }
+		else { $status_id = 1;}
 		if($sold_price == null) { $sold_price = "NULL"; $s_date = "NULL"; }
-		else { $status_id = 2; if($s_date == null) { $s_date = date("Ymd"); } }  // BUG: issues with customizing the sold date
+		else {$status_id = 3;if($s_date == null) { $s_date = date("Ymd"); } }
 		if($s_date == null) { $s_date = "NULL"; }
 		if($weight == null) { $weight = "NULL"; }
+		
+		//$query = "SELECT * FROM tallyup.show_all_inventory_product WHERE product_id = {$_GET['id']}";
+		//$run = mysqli_query($con, $query) or die(mysqli_error());
+		//$row = mysqli_fetch_array($run);
+		
+		//if(($_POST['purchase_price'] == $row['purchase_price']) && ($_POST['p_date'] == $row['purchase_date']) && ($_POST['list_price']  == $row['listed_price']) && ($_POST['sold_price'] == $row['sold_price']) && ($_POST['s_date'] == $row['sold_date']) && ($_POST['status'] != row['status_id'])) {
+		//	$status_id = $_POST['status'];
+		//}
 		
 		$query = "UPDATE product SET name = '$name', color = '$color', status_id = '$status_id', category_id = '$category_id',
 				size = '$size', sku = '$sku', condition_id = $condition_id, weight = $weight, notes = '$notes' WHERE product_id = {$_GET['id']}";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
 	
-		$query = "UPDATE inventory SET listed_price = $list_price, sold_price = $sold_price, sold_date = $s_date WHERE product_id = {$_GET['id']}";
+		if($s_date == "NULL") {
+			$query = "UPDATE inventory SET listed_price = $list_price, sold_price = $sold_price, sold_date = DEFAULT WHERE product_id = {$_GET['id']}";
+		}
+		else {
+			$query = "UPDATE inventory SET listed_price = $list_price, sold_price = $sold_price, sold_date = '$s_date' WHERE product_id = {$_GET['id']}";
+		}
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 
 		
@@ -54,12 +67,23 @@ if(isset($_POST['inventoryupdate'])){	// Initiates an inventory update
 		$num = mysqli_num_rows($run);
 		
 		if ($num == 1) {
-			$query = "UPDATE expense SET purchase_price = $purchase_price, purchase_date = $p_date WHERE product_id = {$_GET['id']}";
+			if($p_date == "NULL") {
+				$query = "UPDATE expense SET purchase_price = $purchase_price, purchase_date = DEFAULT WHERE product_id = {$_GET['id']}";
+			}
+			else {
+				$query = "UPDATE expense SET purchase_price = $purchase_price, purchase_date = '$p_date' WHERE product_id = {$_GET['id']}";
+			}
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 		else {
-			$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
-			VALUES('$account_id', {$_GET['id']}, $purchase_price, $p_date, NULL, '$notes')";
+			if($p_date == "NULL") {
+				$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
+				VALUES('$account_id', {$_GET['id']}, $purchase_price, DEFAULT, NULL, '$notes')";
+			}
+			else {
+				$query = "INSERT INTO expense(account_id, product_id, purchase_price, purchase_date, purchase_location, notes)
+				VALUES('$account_id', {$_GET['id']}, $purchase_price, '$p_date', NULL, '$notes')";
+			}
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 
@@ -94,8 +118,8 @@ else if (isset($_POST['expenseupdate'])){	// Initiates an expense update
 			if($condition_id == null) { $condition_id = "NULL"; }
 			if($list_price == null) { $list_price = "NULL"; $status_id = 0; }
 			else { $status_id = 1; }
-			if($sold_price == null) { $sold_price = "NULL"; $s_date = "NULL"; }
-			else { $status_id = 2; if($s_date == null) { $s_date = date("Ymd"); } } // BUG: issues with customizing the sold date
+			if($sold_price == null) { $sold_price = "NULL"; }
+			else { $status_id = 3; if($s_date == null) { $s_date = date("Ymd"); } }
 			if($s_date == null) { $s_date = "NULL"; }
 			if($weight == null) { $weight = "NULL"; }
 			
@@ -103,7 +127,12 @@ else if (isset($_POST['expenseupdate'])){	// Initiates an expense update
 				condition_id = $condition_id, weight = $weight WHERE product_id = {$_GET['id']}";
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 			
-			$query = "UPDATE inventory SET listed_price = $list_price, sold_price = $sold_price, sold_date = $s_date WHERE product_id = {$_GET['id']}";
+			if($s_date == "NULL") {
+				$query = "UPDATE inventory SET listed_price = $list_price, sold_price = $sold_price, sold_date = DEFAULT WHERE product_id = {$_GET['id']}";
+			}
+			else {
+				$query = "UPDATE inventory SET listed_price = $list_price, sold_price = $sold_price, sold_date = '$s_date' WHERE product_id = {$_GET['id']}";
+			}
 			$run = mysqli_query($con, $query) or die(mysqli_error());
 		}
 		
@@ -120,8 +149,14 @@ else if (isset($_POST['expenseupdate'])){	// Initiates an expense update
 		$query = "UPDATE product SET name = '$name', category_id = '$category_id', notes = '$notes' WHERE product_id = {$_GET['id']}";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
-		$query = "UPDATE expense SET purchase_price = $purchase_price, purchase_date = '$p_date',
+		if($p_date == "NULL") {
+			$query = "UPDATE expense SET purchase_price = $purchase_price, purchase_date = DEFAULT,
 			purchase_location = '$purchase_location', notes = '$notes' WHERE product_id = {$_GET['id']}";
+		}
+		else {
+			$query = "UPDATE expense SET purchase_price = $purchase_price, purchase_date = '$p_date',
+			purchase_location = '$purchase_location', notes = '$notes' WHERE product_id = {$_GET['id']}";
+		}
 		$run = mysqli_query($con, $query) or die(mysqli_error());
 		
 		header('location:../../expenses.php');
@@ -138,10 +173,6 @@ else if (isset($_POST['addtoinventory'])){	// Initiates inventory inclusion
 	$query = "INSERT INTO inventory(account_id, product_id, listed_price, sold_price, sold_date, expense_id)
 			VALUES('$account_id', {$_GET['id']}, NULL, NULL, NULL, NULL)";
 	$run = mysqli_query($con, $query) or die(mysqli_error());
-	
-	//$query = "UPDATE inventory SET listed_price = '', sold_price = '', sold_date = '', expense_id = ''
-	//		WHERE account_id = '$account_id' AND product_id = {$_GET['id']}";
-	//$run = mysqli_query($con, $query) or die(mysqli_error());
 	
 	$query = "SELECT * FROM tallyup.show_all_inventory_product WHERE product_id = {$_GET['id']} AND account_id = {$_SESSION['account_id']}";
 	$result = mysqli_query($con, $query) or die(mysqli_error());

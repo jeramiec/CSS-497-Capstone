@@ -17,6 +17,14 @@ if($_GET['type'] == "expense") { // Delete expense record but not product and in
 	header('Location: ../../expenses.php');
 }
 else if ($_GET['type'] == "inventory") { // Delete inventory, expense, and product
+	$query = "DELETE FROM inventory WHERE account_id = {$_SESSION['account_id']} AND product_id = {$_GET['id']}";
+	$result = mysqli_query($con, $query) or die(mysqli_error());
+	$query = "DELETE FROM expense WHERE account_id = {$_SESSION['account_id']} AND product_id = {$_GET['id']}";
+	$result = mysqli_query($con, $query) or die(mysqli_error());
+	$query = "DELETE FROM product WHERE product_id = {$_GET['id']}";
+	$result = mysqli_query($con, $query) or die(mysqli_error());
+	
+	/*
 	$query = "SELECT * FROM expense WHERE account_id = {$_SESSION['account_id']} AND product_id = {$_GET['id']}";
 	$result = mysqli_query($con, $query) or die(mysqli_error());
 	$num = mysqli_num_rows($result);
@@ -24,16 +32,18 @@ else if ($_GET['type'] == "inventory") { // Delete inventory, expense, and produ
 	if($num == 1){
 		$query = "DELETE FROM inventory WHERE product_id = {$_GET['id']}";
 		$run = mysqli_query($con, $query) or die(mysqli_error());
-		
+		echo "deleting inventory item";
 		$query = "UPDATE product SET color = '', status_id = '', product_type_id = '', size = '', sku = '', 
 			condition_id = '', weight = '' WHERE product_id = {$_GET['id']}";
 	}
 	else {
 		$query = "DELETE FROM product WHERE product_id = {$_GET['id']}";
 	}
-		$run = mysqli_query($con, $query) or die(mysqli_error());
-		echo "Successful deletion";
-		header('Location: ../../inventory.php');
+	*/
+	
+	$run = mysqli_query($con, $query) or die(mysqli_error());
+	echo "Successful deletion";
+	header('Location: ../../inventory.php');
 }
 else {
 	echo "Failed delete";

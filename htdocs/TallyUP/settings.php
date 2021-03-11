@@ -37,5 +37,27 @@ session_start();
 				</nav>
 			</div>
 		</div>
+		
+		<main>
+			<div class="main-container">
+				<div class="wrapper">
+					<header>
+						<nav>
+							<div class="sidebar settings">
+								<div class="main-title">
+									<h1>Settings</h1>
+								</div>
+								<ul>
+									<li class="current"><a href="">Edit profile</a></li>
+									<li><a href="">Manage team</a></li>
+									<li><a href="">Password & security</a></li>
+								</ul>
+							</div>
+						</nav>
+					</header>
+					
+				</div>
+		</main>
+		
 	</body>
 </html>

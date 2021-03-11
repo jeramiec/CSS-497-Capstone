@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+$con = mysqli_connect('localhost','jeramiec','1234');
+if (mysqli_connect_errno()){
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+mysqli_select_db($con,'tallyup');
 ?>
 
 <html lang="en">
@@ -9,11 +15,40 @@ session_start();
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Homepage dashboard</title>
 		<link rel="stylesheet" href="css/mainstyle.css" />
+		
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+					['Month', 'Company', 'Personal'],
+					<?php
+					$query = "SELECT * FROM tallyup.monthly_sales WHERE account_id = {$_SESSION['account_id']} AND month IS NOT NULL";
+					$result = mysqli_query($con, $query) or die(mysqli_error());
+					while($row = mysqli_fetch_assoc($result)) {
+						echo "['".$row['month']."', ".$row['s_company'].", ".$row['s_personal']."],";
+					}
+					?>
+				]);
+				
+				var options = {
+					title: '',
+					curveType: 'function',
+					legend: { position: 'right' }
+				};
+
+				var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+				chart.draw(data, options);
+			}
+		</script>
 	</head>
-	
 	
 	<body>
 	
+		
 		<!-- NAV BAR -->
 		
 		<div class="nav-container">
@@ -62,17 +97,68 @@ session_start();
 				<div class="large-widgets">
 					<div class="widget wkreport">
 						<div class="widget-inner">
-							<h3 class="widget-title">Weekly Report<h3>
+							<h3 class="widget-title">Annual Report<h3>
 						</div>
+						<div id="curve_chart" style="width: 900px; height: 500px"></div>
 					</div>
 				</div>
 				
-				<div class="medium-widgets">
+				<div class="medium-widgets homepage">
 					<div class="widget portfolio">
 						<div class="widget-inner">
 							<h3 class="widget-title">Portfolio<h3>
 						</div>
+						<div class="current-totals">
+							<ul>
+								<li><img src="icons/homepage/portfolio_inventory.svg" alt="portfolio_inventory">
+								<?php
+								$query = "SELECT total_available_items FROM tallyup.total_available_items WHERE account_id = {$_SESSION['account_id']}";
+								$run = mysqli_query($con, $query) or die(mysqli_error());
+								$row = mysqli_fetch_assoc($run);
+								echo $row['total_available_items'];
+								?>
+								Total items</li>
+								<li><img src="icons/homepage/portfolio_sales.svg" alt="portfolio_sales">
+								<?php
+								$query = "SELECT total_sold FROM tallyup.total_sold WHERE account_id = {$_SESSION['account_id']}";
+								$run = mysqli_query($con, $query) or die(mysqli_error());
+								$row = mysqli_fetch_assoc($run);
+								echo $row['total_sold'];
+								?>
+								Sold</li>
+								<li><img src="icons/homepage/portfolio_expenses.svg" alt="portfolio_expenses">
+								<?php
+								$query = "SELECT total_purchases FROM tallyup.total_purchases WHERE account_id = {$_SESSION['account_id']}";
+								$run = mysqli_query($con, $query) or die(mysqli_error());
+								$row = mysqli_fetch_assoc($run);
+								if($row['total_purchases'] == 1) {
+									echo $row['total_purchases'] . " Purchased";
+								}
+								else {
+									echo $row['total_purchases'] . " Purchases";
+								}
+								?></li>
+							</ul>
+						</div>
+						<div class="widget-content">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
 					</div>
+					
 					
 					<div class="widget notification">
 						<div class="widget-inner">
@@ -80,12 +166,10 @@ session_start();
 						</div>
 					</div>
 				</div>
-
-				
 			</div>
 		</main>
 
 		
-		<script src="main.js"</script>
+		<script src="js/main.js"</script>
 	</body>
 </html>
