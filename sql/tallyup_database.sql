@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2021 at 07:31 PM
+-- Generation Time: Mar 12, 2021 at 01:29 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -20,3 +20,5 @@ SET time_zone = "+00:00";
 --
 -- Database: `tallyup`
 --
+CREATE DATABASE IF NOT EXISTS `tallyup` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `tallyup`;
