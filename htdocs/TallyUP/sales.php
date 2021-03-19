@@ -46,29 +46,49 @@ session_start();
 				</div>
 				
 				<div class="medium-widgets">
-					<div class="widget num-sales">
+					<div class="widget total-sales">
 						<div class="widget-inner">
 							<div class="widget-title">
-								<h3 class="insight-title">Total sales<h3>
-								<h1 class="insight-result">$<?php $total_sales = true; require 'php/get_sales_insights.php'?><h1>
+								<h3 class="insight-title">Net sales<h3>
+								<h1 class="insight-result">$<?php $net_sales = true; require 'php/get_sales_insights.php'?><h1>
 							</div>
 						</div>
 					</div>
-					<div class="widget profit">
+					<div class="widget week-sales">
 						<div class="widget-inner">
 							<div class="widget-title">
-								<h3 class="insight-title">Profit<h3>
-								<h1 class="insight-result">$<?php $profit = true; require 'php/get_sales_insights.php'?><h1>
+								<h3 class="insight-title">Total sold<h3>
+								<h1 class="insight-result"><?php $sales_num = true; require 'php/get_sales_insights.php'?><h1>
 							</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="large-widgets">
-					<div class="widget graph">
+				<div class="medium-widgets">
+					<div class="widget profit">
 						<div class="widget-inner">
 							<div class="widget-title">
-								<h2>Daily, weekly, all-time Graph<h2>
+								<h3 class="insight-title">This week<h3>
+								<h1 class="insight-result">$<?php $net_sales_week = true; require 'php/get_sales_insights.php'?><h1>
+							</div>
+						</div>
+					</div>
+					<div class="widget overall">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h3 class="insight-title">This week<h3>
+								<h1 class="insight-result"><?php $sales_num_week = true; require 'php/get_sales_insights.php'?><h1>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="large-widgets">
+					<div class="widget overall">
+						<div class="widget-inner">
+							<div class="widget-title">
+								<h3 class="insight-title">Total profit<h3>
+								<h1 class="insight-result">$<?php $profit = true; require 'php/get_sales_insights.php'?><h1>
 							</div>
 						</div>
 					</div>

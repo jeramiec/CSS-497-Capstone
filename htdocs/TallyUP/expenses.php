@@ -59,7 +59,7 @@
 					<div class="widget profit">
 						<div class="widget-inner">
 							<div class="widget-title">
-								<h3 class="insight-title">Profit<h3>
+								<h3 class="insight-title">Expenses<h3>
 								<h1 class="insight-result">$<?php ?><h1>
 							</div>
 						</div>

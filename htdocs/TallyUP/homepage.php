@@ -69,10 +69,14 @@ mysqli_select_db($con,'tallyup');
 							<li><a href="shopping.php"><img class="btn shopping" src="icons/cart.svg" alt="shop_btn"/>shopping</a></li>
 							<li><a href="settings.php"><img class="btn settings" src="icons/settings.svg" alt="set_btn"/>settings</a></li>
 						</ul>
+						<div class="logout">
+							<a href="logout.php"><img src="icons/action/logout.svg"></button></a>
+						</div>
 					</div>
 				</nav>
 			</div>
 		</div>
+		
 		
 		<!-- END OF NAV BAR -->
 		
@@ -99,7 +103,9 @@ mysqli_select_db($con,'tallyup');
 						<div class="widget-inner">
 							<h3 class="widget-title">Annual Report<h3>
 						</div>
-						<div id="curve_chart" style="width: 900px; height: 500px"></div>
+						<div class="widget-content chart">
+							<div id="curve_chart" style="width: 900px; height: 500px"></div>
+						</div>
 					</div>
 				</div>
 				
@@ -112,10 +118,16 @@ mysqli_select_db($con,'tallyup');
 							<ul>
 								<li><img src="icons/homepage/portfolio_inventory.svg" alt="portfolio_inventory">
 								<?php
+								//error_reporting(0);
 								$query = "SELECT total_available_items FROM tallyup.total_available_items WHERE account_id = {$_SESSION['account_id']}";
 								$run = mysqli_query($con, $query) or die(mysqli_error());
 								$row = mysqli_fetch_assoc($run);
-								echo $row['total_available_items'];
+								if($row['total_available_items'] != NULL) {
+									echo $row['total_available_items'];
+								} 
+								else {
+									echo 0;
+								}
 								?>
 								Total items</li>
 								<li><img src="icons/homepage/portfolio_sales.svg" alt="portfolio_sales">
@@ -123,7 +135,12 @@ mysqli_select_db($con,'tallyup');
 								$query = "SELECT total_sold FROM tallyup.total_sold WHERE account_id = {$_SESSION['account_id']}";
 								$run = mysqli_query($con, $query) or die(mysqli_error());
 								$row = mysqli_fetch_assoc($run);
-								echo $row['total_sold'];
+								if($row['total_sold'] != NULL) {
+									echo $row['total_sold'];
+								} 
+								else {
+									echo 0;
+								}
 								?>
 								Sold</li>
 								<li><img src="icons/homepage/portfolio_expenses.svg" alt="portfolio_expenses">
@@ -131,30 +148,33 @@ mysqli_select_db($con,'tallyup');
 								$query = "SELECT total_purchases FROM tallyup.total_purchases WHERE account_id = {$_SESSION['account_id']}";
 								$run = mysqli_query($con, $query) or die(mysqli_error());
 								$row = mysqli_fetch_assoc($run);
-								if($row['total_purchases'] == 1) {
-									echo $row['total_purchases'] . " Purchased";
+								if($row['total_purchases'] != NULL) {
+									if($row['total_purchases'] == 1) {
+										echo $row['total_purchases'] . " Purchased";
+									}
+									else {
+										echo $row['total_purchases'] . " Purchases";
+									}
 								}
 								else {
-									echo $row['total_purchases'] . " Purchases";
+									echo 0 . " Purchases";
 								}
 								?></li>
 							</ul>
 						</div>
 						<div class="widget-content">
 							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
+								<li><h3><?php $total_expenses = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Total Expenses</h6></li>
+								<li><h3><?php $total_sales = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Total Sales</h6></li>
+								<li><h3><?php $profit = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Profit</h6></li>
+
+								<li><h3><?php $unrealized_profit = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Unrealized profit</h6></li>
+								<li><h3><?php $avg_item = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Avg. Profit per item</h6></li>
+								<li><h3><?php $popular_item = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Popular Item</h6></li>
+
+								<li><h3><?php $largest_sale = true; require 'php/get_portfolio_insights.php' ?></h3><h6>Largest Sale</h6></li>
+								<li><h3><?php $ytd_expenses = true; require 'php/get_portfolio_insights.php' ?></h3><h6>YTD Expenses</h6></li>
+								<li><h3><?php $ytd_networth = true; require 'php/get_portfolio_insights.php' ?></h3><h6>YTD Net Worth</h6></li>
 							</ul>
 						</div>
 					</div>
@@ -162,7 +182,12 @@ mysqli_select_db($con,'tallyup');
 					
 					<div class="widget notification">
 						<div class="widget-inner">
-							<h3 class="widget-title">Notifications<h3>
+							<h3 class="widget-title">Activity<h3>
+						</div>
+						<div class="widget-content">
+							<ul>	
+								<li></li>
+							</ul>
 						</div>
 					</div>
 				</div>
