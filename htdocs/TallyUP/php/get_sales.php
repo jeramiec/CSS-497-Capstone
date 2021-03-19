@@ -30,7 +30,7 @@
 	while($row = mysqli_fetch_array($result)){
 		
 		$id = $row['product_id'];
-		$type = "expense";
+		$type = "sales";
 		
 		echo "<tr>";
 		if ($row['status'] == 'Listed; pending') {

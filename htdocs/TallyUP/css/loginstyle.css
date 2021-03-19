@@ -140,7 +140,7 @@ form.sign-up-form{
 	transition: .5s;
 }
 
-.btn: hover{
+.btn:hover{
 	background-color: #4D84E2;
 }
 
@@ -180,7 +180,7 @@ form.sign-up-form{
 
 .panel h3{
 	font-weight: 600;
-	line-height: 1;
+	line-height: 2;
 	font-size: 1.5rem;
 }
 
@@ -245,4 +245,10 @@ form.sign-up-form{
 .container.sign-up-mode form.sign-up-form{
 	z-index: 2;
 	opacity: 1;
+}
+
+.container.sign-up-mode form.sign-up-form .page2{
+	position: relative;
+	opacity: 0;
+	transition: 1s ease-in-out;
 }

@@ -9,3 +9,15 @@ sign_up_btn.addEventListener("click", () => {
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
+
+function show_page(visibleId, hiddenId) {
+	var e = document.getElementById(visibleId);
+	var f = document.getElementById(hiddenId);
+	f.style.visibility = 'hidden';
+	if(e.style.opacity == '1') {
+		e.style.opacity = '0';
+	}
+	else {
+		e.style.opacity = '1';
+	}
+};

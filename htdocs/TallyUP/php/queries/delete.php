@@ -45,6 +45,12 @@ else if ($_GET['type'] == "inventory") { // Delete inventory, expense, and produ
 	echo "Successful deletion";
 	header('Location: ../../inventory.php');
 }
+if($_GET['type'] == "sales") {
+	$query = "DELETE FROM product WHERE product_id = {$_GET['id']}";
+	$run = mysqli_query($con, $query) or die(mysqli_error());
+	echo "Successful deletion";
+	header('Location: ../../sales.php');
+}
 else {
 	echo "Failed delete";
 }
